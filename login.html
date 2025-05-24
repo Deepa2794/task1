@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login - BMI Calculator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="wrapper">
+    <h2>Login</h2>
+    <input type="text" id="username" placeholder="Username"><br><br>
+    
+    <div class="password-container">
+      <input type="password" id="password" placeholder="Password">
+      <span class="toggle-password" onclick="togglePassword('password', this)">👁️</span>
+    </div><br>
+    
+    <button onclick="login()">Login</button>
+    <p id="login_error" class="error"></p>
+    <p>Don't have an account? <a href="register.html">Register</a></p>
+  </div>
+
+  <script>
+    function togglePassword(id, icon) {
+      const input = document.getElementById(id);
+      input.type = input.type === "password" ? "text" : "password";
+      icon.textContent = input.type === "password" ? "👁️" : "🙈";
+    }
+
+    function login() {
+      const user = document.getElementById("username").value;
+      const pass = document.getElementById("password").value;
+      const error = document.getElementById("login_error");
+
+      const users = JSON.parse(localStorage.getItem("users")) || {};
+      if (users[user] === pass) {
+        localStorage.setItem("loggedIn", true);
+        localStorage.setItem("currentUser", user);
+        window.location.href = "index.html";
+      } else {
+        error.textContent = "Invalid username or password.";
+      }
+    }
+  </script>
+</body>
+</html>

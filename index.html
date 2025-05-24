@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>BMI Calculator</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="script.js" defer></script>
+  <script>
+    if (!localStorage.getItem("loggedIn")) {
+      window.location.href = "login.html";
+    }
+  </script>
+</head>
+<body>
+  <div class="wrapper">
+    <h2>BMI Calculator</h2>
+
+    <p>Height in CM:
+      <input type="text" id="height"><br><span id="height_error" class="error"></span>
+    </p>
+
+    <p>Weight in KG:
+      <input type="text" id="weight"><br><span id="weight_error" class="error"></span>
+    </p>
+
+    <button id="btn">Calculate</button>
+    <p id="output"></p>
+
+    <canvas id="bmiChart" width="400" height="200" style="margin-top: 20px;"></canvas>
+    <button onclick="downloadChart()">Download Chart</button>
+
+    <button onclick="logout()">Logout</button>
+  </div>
+</body>
+</html>
